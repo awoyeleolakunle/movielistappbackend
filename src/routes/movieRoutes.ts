@@ -3,7 +3,7 @@
 import { Router } from 'express';
 import { createMovie } from '../controllers/movieController';
 import { findMovieById } from '../controllers/findMovieController';
-import { findAllMovies } from '../controllers/findAllController';
+import { findAllMovies } from '../controllers/findAllMovieController';
 
 
 
