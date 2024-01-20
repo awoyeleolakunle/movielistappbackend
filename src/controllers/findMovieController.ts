@@ -17,18 +17,8 @@ export const findMovieById = async (req: Request, res: Response)=>{
     
         const id = req.query.id as string;
 
-        console.log("I'm the id ", id);
 
-        const hardcodedId = '65abd15c29232dd9f8a4ea30'
-
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        // Handle invalid ID
-        res.status(HttpStatus.BAD_REQUEST).json({ error: 'Invalid Movie ID' });
-        return;
-      }
-
-    const foundMovie : MovieModel | null = await Movie.findById(hardcodedId);
+    const foundMovie : MovieModel | null = await Movie.findById(id);
 
     if(foundMovie === null){
         throw new MovieError(ErrorMessage.MOVIE_NOT_FOUND)  

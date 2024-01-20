@@ -1,42 +1,24 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
-import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import movieRouter from './routes/movieRoutes';
+
+import connectToDatabase from '../src/db/db';
 
 
 const app: Application = express();
 
 app.use(bodyParser.json());
 
-
-const hello = (req: Request, res: Response) => {
-  return res.send('Hello, world!');
+const PAGE_NOT_FOUND = (req: Request, res: Response) => {
+  return res.send('Page cannot be found');
 };
 
 
-
-const mongoUrl = "mongodb://127.0.0.1:27017/moviedb";
-mongoose.Promise = global.Promise;
-
-
- mongoose.connect(mongoUrl, {
-   useNewUrlParser: true,
-   useUnifiedTopology: true,
- } as any);
-
-
- const db = mongoose.connection;
-
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-db.once("open", async () => {
-  console.log("Connected to MongoDB");})
-
-
-
+connectToDatabase();
 
 
 app.use('/api/v1/movielistapp/', movieRouter);
-app.use('/api/v1/movielistapp', hello);
+app.use('/api/v1/movielistapp', PAGE_NOT_FOUND);
 
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
