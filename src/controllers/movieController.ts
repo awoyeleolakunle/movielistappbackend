@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
 import Movie, { MovieModel } from "../models/movieModel";
-import { HttpStatus, ErrorMessage } from "../constant";
+import { ErrorMessage } from "../errorMessages";
 import { MovieError } from "../exception";
+import { HttpStatus } from "../constants";
 
 export const createMovie = async (req: Request, res: Response) => {
   try {
     const { title, genre, director, imageUrl } = req.body;
+
     const existingMovie = await Movie.findOne({ title });
 
     if (existingMovie) {

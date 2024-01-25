@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { createMovie } from "../controllers/movieController";
-import { findMovieById } from "../controllers/findMovieController";
+import { findMovieById } from "../controllers/findMovieByIdController";
 import { findAllMovies } from "../controllers/findAllMovieController";
-import { findMovieByTitle } from "../controllers/findMovieController";
+import { findMovieByTitle } from "../controllers/findMovieByTitleController";
 
 const router = Router();
 

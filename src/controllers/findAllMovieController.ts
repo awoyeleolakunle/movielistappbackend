@@ -2,7 +2,8 @@ import Movie, { MovieModel } from "../models/movieModel";
 
 import { Response, Request } from "express";
 
-import { ErrorMessage, HttpStatus } from "../constant";
+import { ErrorMessage } from "../errorMessages";
+import { HttpStatus } from "../constants";
 
 export const findAllMovies = async (req: Request, res: Response) => {
   try {
