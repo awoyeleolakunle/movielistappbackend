@@ -1,12 +1,17 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import movieRouter from "./routes/movieRoutes";
+import userRouter from "./routes/userRouter";
 
 import connectToDatabase from "../src/db/db";
+
+// import { generateToken } from "../src/api/utils/jwt.utils";
 
 import cors from "cors";
 
 const app: Application = express();
+
+//console.log("JWT", generateToken( ));
 
 app.use(
   cors({
@@ -25,6 +30,7 @@ const PAGE_NOT_FOUND = (req: Request, res: Response) => {
 connectToDatabase();
 
 app.use("/api/v1/movielistapp/", movieRouter);
+app.use("/api/v1/movielistapp/", userRouter);
 app.use("/api/v1/movielistapp", PAGE_NOT_FOUND);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
