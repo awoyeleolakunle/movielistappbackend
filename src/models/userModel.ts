@@ -14,7 +14,7 @@ const userSchema = new Schema<UserModel>({
   password: { type: String, required: true },
   phoneNumber: { type: String },
   dateCreated: { type: Number },
-  accessType: { type: [] },
+  accessType: { type: [String] },
 });
 
 export default model<UserModel>("user", userSchema);

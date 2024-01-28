@@ -2,16 +2,13 @@ import express, { Application, Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import movieRouter from "./routes/movieRoutes";
 import userRouter from "./routes/userRouter";
+import loginRouter from "./routes/loginRouter";
 
 import connectToDatabase from "../src/db/db";
-
-// import { generateToken } from "../src/api/utils/jwt.utils";
 
 import cors from "cors";
 
 const app: Application = express();
-
-//console.log("JWT", generateToken( ));
 
 app.use(
   cors({
@@ -31,6 +28,8 @@ connectToDatabase();
 
 app.use("/api/v1/movielistapp/", movieRouter);
 app.use("/api/v1/movielistapp/", userRouter);
+app.use("/api/v1/movielistapp/", loginRouter);
+
 app.use("/api/v1/movielistapp", PAGE_NOT_FOUND);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
