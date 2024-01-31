@@ -9,6 +9,15 @@ import userModel from "../../models/userModel";
 
 export const registerUser = async (req: Request, res: Response) => {
   try {
+    // const sendResponse = (
+    //   res: Response,
+    //   data: any,
+    //   success: boolean = true,
+    //   status: number = HttpStatus.OK
+    // ) => {
+    //   res.status(status).json({ success, data });
+    // };
+
     const { emailAddress, password, phoneNumber } = req.body;
 
     const isRgisteredUser = await User.findOne({ emailAddress });

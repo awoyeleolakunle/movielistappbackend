@@ -4,3 +4,9 @@ export const HttpStatus = {
   INTERNAL_SERVER_ERROR: 500,
   OK: 200,
 };
+
+export enum ErrorType {
+  MovieError = "MovieError",
+  RegistrationError = "RegistrationError",
+  LoginError = "LoginError",
+}
