@@ -4,12 +4,14 @@ import { Response, Request } from "express";
 
 import { ErrorMessage } from "../errorMessages";
 import { HttpStatus } from "../constants";
+import { AllMovieFinderService } from "../service/movieService/allMovieFinderService";
 
-export const findAllMovies = async (req: Request, res: Response) => {
+export const findAllMoviesController = async (req: Request, res: Response) => {
   try {
-    const allMovies: MovieModel[] = await Movie.find();
+    const listOfAllMovies: MovieModel[] =
+      await AllMovieFinderService.findAllMovie();
 
-    res.status(HttpStatus.OK).json(allMovies);
+    res.status(HttpStatus.OK).json(listOfAllMovies);
   } catch (error) {
     console.log("An error occurred: ", error);
     res

@@ -4,7 +4,7 @@ import { ErrorMessage } from "../errorMessages";
 import { MovieError, ErrorClass } from "../exception";
 import { HttpStatus } from "../constants";
 import { MovieRequestInput } from "../requestInput/movieRequest";
-import { MovieCreationService } from "../service/movieCreationService";
+import { MovieCreationService } from "../service/movieService/movieCreationService";
 import { faSave } from "@fortawesome/free-regular-svg-icons";
 
 export const createMoviecontroller = async (

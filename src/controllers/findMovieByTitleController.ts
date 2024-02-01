@@ -3,7 +3,7 @@ import Movie, { MovieModel } from "../models/movieModel";
 import { MovieError, ErrorClass } from "../exception";
 import { ErrorMessage } from "../errorMessages";
 import { HttpStatus } from "../constants";
-import { MovieFinderByTitleService } from "../service/movieFinderByTitleService";
+import { MovieFinderByTitleService } from "../service/movieService/movieFinderByTitleService";
 
 export const findMovieByTitleController = async (
   req: Request,
@@ -13,7 +13,8 @@ export const findMovieByTitleController = async (
     const title = req.query.title as string;
     console.log("I'm the title found ", title);
 
-    const foundMovie = await MovieFinderByTitleService.findMovieByTitle(title);
+    const foundMovie: MovieModel | null =
+      await MovieFinderByTitleService.findMovieByTitle(title);
 
     if (!foundMovie) {
       // throw new MovieError(ErrorMessage.MOVIE_NOT_FOUND);

@@ -1,8 +1,8 @@
-import { MovieRequestInput } from "../requestInput/movieRequest";
-import Movie, { MovieModel } from "../models/movieModel";
-import { ErrorClass, MovieError, Errors } from "../exception";
-import { ErrorMessage } from "../errorMessages";
-import { ErrorType } from "../constants";
+import { MovieRequestInput } from "../../requestInput/movieRequest";
+import Movie, { MovieModel } from "../../models/movieModel";
+import { ErrorClass, MovieError, Errors } from "../../exception";
+import { ErrorMessage } from "../../errorMessages";
+import { ErrorType } from "../../constants";
 
 const movieError = {
   MovieError: {

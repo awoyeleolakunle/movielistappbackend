@@ -1,21 +1,23 @@
 import { Response, Request } from "express";
 import Movie, { MovieModel } from "../models/movieModel";
-import { MovieError } from "../exception";
+import { ErrorClass } from "../exception";
 import { ErrorMessage } from "../errorMessages";
 import { HttpStatus } from "../constants";
+import { MovieFinderById } from "../service/movieService/movieFinderByIdService";
 
-export const findMovieById = async (req: Request, res: Response) => {
+export const findMovieByIdContorller = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const id = req.query.id as string;
-    const foundMovie: MovieModel | null = await Movie.findById(id);
-
-    if (foundMovie === null) {
-      throw new MovieError(ErrorMessage.MOVIE_NOT_FOUND);
-    }
+    const foundMovie: MovieModel | null = await MovieFinderById.findMoiveById(
+      id
+    );
 
     res.status(HttpStatus.OK).json(foundMovie);
   } catch (error) {
-    if (error instanceof MovieError) {
+    if (error instanceof ErrorClass) {
       res.status(HttpStatus.BAD_REQUEST).json({ error: error.message });
     } else {
       console.log("An error occurred: ", error);
