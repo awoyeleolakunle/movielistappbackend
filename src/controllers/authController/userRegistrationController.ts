@@ -4,18 +4,18 @@ import { ErrorMessage } from "../../errorMessages";
 import { ErrorClass, RegistrationError } from "../../exception";
 import { HttpStatus } from "../../constants";
 import { generateToken } from "../../api/utils/jwt.utils";
-import { UserCreationRequest } from "../../requestInput/userRequest";
-import { UserCreationService } from "../../service/movieService/userCreationService";
+import { UserRegistrationRequest } from "../../requestInput/userRequest";
+import { UserRegistrationService } from "../../service/authService/userRegistrationService";
 
 export const registerUserController = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const userCreationRequest: UserCreationRequest = req.body;
+    const userRegistrationRequest: UserRegistrationRequest = req.body;
 
-    const savedUser: UserModel = await UserCreationService.createUser(
-      userCreationRequest
+    const savedUser: UserModel = await UserRegistrationService.createUser(
+      userRegistrationRequest
     );
 
     const token: string = generateToken(savedUser);

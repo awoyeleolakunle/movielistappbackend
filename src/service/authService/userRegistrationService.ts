@@ -1,4 +1,4 @@
-import { UserCreationRequest } from "../../requestInput/userRequest";
+import { UserRegistrationRequest } from "../../requestInput/userRequest";
 import User, { UserModel } from "../../models/userModel";
 import { ErrorType } from "../../constants";
 import { ErrorClass, Errors } from "../../exception";
@@ -11,13 +11,14 @@ const registrationError = {
     message: ErrorMessage.USER_ALREADY_EXISTS,
   },
 };
-export class UserCreationService {
+
+export class UserRegistrationService {
   static async createUser(
-    userCreationRequest: UserCreationRequest
+    userRegistrationRequest: UserRegistrationRequest
   ): Promise<UserModel> {
     try {
       const existingUser: UserModel | null = await User.findOne({
-        emailAddress: userCreationRequest.emailAddress,
+        emailAddress: userRegistrationRequest.emailAddress,
       });
       if (existingUser) {
         throw new ErrorClass(
@@ -27,12 +28,12 @@ export class UserCreationService {
       }
 
       const harshedPassword = await bcrypt.hash(
-        userCreationRequest.password,
+        userRegistrationRequest.password,
         10
       );
-      userCreationRequest.password = harshedPassword;
+      userRegistrationRequest.password = harshedPassword;
 
-      const newUser: UserModel = new User(userCreationRequest);
+      const newUser: UserModel = new User(userRegistrationRequest);
       newUser.dateCreated = new Date();
       newUser.accessType = ["USER"];
 

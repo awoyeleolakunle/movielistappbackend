@@ -32,7 +32,11 @@ export interface Errors {
     message: string;
   };
   LoginError: {
-    name: ErrorType.RegistrationError;
+    name: ErrorType.LoginError;
+    message: string;
+  };
+  UserError: {
+    name: ErrorType.UserError;
     message: string;
   };
 }

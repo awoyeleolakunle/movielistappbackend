@@ -4,4 +4,5 @@ export const ErrorMessage = {
   MOVIE_NOT_FOUND: "Movie cannot be found",
   USER_ALREADY_EXISTS: "User with this credentials already exists",
   INVALID_USER_DETAILS: "Invalid Details",
+  USER_NOT_FOUND: "User with this details not found",
 };

@@ -9,4 +9,5 @@ export enum ErrorType {
   MovieError = "MovieError",
   RegistrationError = "RegistrationError",
   LoginError = "LoginError",
+  UserError = "UserError",
 }
