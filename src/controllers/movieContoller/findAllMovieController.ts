@@ -1,10 +1,10 @@
-import Movie, { MovieModel } from "../models/movieModel";
+import Movie, { MovieModel } from "../../models/movieModel";
 
 import { Response, Request } from "express";
 
-import { ErrorMessage } from "../errorMessages";
-import { HttpStatus } from "../constants";
-import { AllMovieFinderService } from "../service/movieService/allMovieFinderService";
+import { ErrorMessage } from "../../errorMessages";
+import { HttpStatus } from "../../constants";
+import { AllMovieFinderService } from "../../service/movieService/allMovieFinderService";
 
 export const findAllMoviesController = async (req: Request, res: Response) => {
   try {

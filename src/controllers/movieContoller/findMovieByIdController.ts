@@ -1,9 +1,9 @@
 import { Response, Request } from "express";
-import Movie, { MovieModel } from "../models/movieModel";
-import { ErrorClass } from "../exception";
-import { ErrorMessage } from "../errorMessages";
-import { HttpStatus } from "../constants";
-import { MovieFinderById } from "../service/movieService/movieFinderByIdService";
+import Movie, { MovieModel } from "../../models/movieModel";
+import { ErrorClass } from "../../exception";
+import { ErrorMessage } from "../../errorMessages";
+import { HttpStatus } from "../../constants";
+import { MovieFinderById } from "../../service/movieService/movieFinderByIdService";
 
 export const findMovieByIdContorller = async (
   req: Request,

@@ -1,6 +1,6 @@
 import { UserModel } from "../../models/userModel";
 import { LoginRequest } from "../../requestInput/loginRequest";
-import { UserFinderByEmailAddress } from "../../service/userService/userFindByEmailAddress";
+import { UserFinderByEmailAddress } from "../userService/userFindByEmailAddressService";
 import * as bcrypt from "bcrypt";
 import { ErrorClass, Errors } from "../../exception";
 import { ErrorType } from "../../constants";

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createMoviecontroller } from "../controllers/movieController";
-import { findMovieByIdContorller } from "../controllers/findMovieByIdController";
-import { findAllMoviesController } from "../controllers/findAllMovieController";
-import { findMovieByTitleController } from "../controllers/findMovieByTitleController";
+import { createMoviecontroller } from "../controllers/movieContoller/movieCreationController";
+import { findMovieByIdContorller } from "../controllers/movieContoller/findMovieByIdController";
+import { findAllMoviesController } from "../controllers/movieContoller/findAllMovieController";
+import { findMovieByTitleController } from "../controllers/movieContoller/findMovieByTitleController";
 import * as Auth from "../api/middlewares/auth.middleware";
 
 const router = Router();

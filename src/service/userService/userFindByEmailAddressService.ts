@@ -1,5 +1,4 @@
 import User, { UserModel } from "../../models/userModel";
-
 import { ErrorClass, Errors } from "../../exception";
 import { ErrorType } from "../../constants";
 import { ErrorMessage } from "../../errorMessages";
