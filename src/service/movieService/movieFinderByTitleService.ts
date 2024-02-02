@@ -11,7 +11,7 @@ const movieError = {
 };
 
 export class MovieFinderByTitleService {
-  static async findMovieByTitle(title: string): Promise<MovieModel | null> {
+  static async findMovieByTitle(title: string): Promise<MovieModel> {
     try {
       const foundMovie: MovieModel | null = await Movie.findOne({ title });
       if (!foundMovie) {

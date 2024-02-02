@@ -2,7 +2,7 @@ import { MovieRequestInput } from "../../requestInput/movieRequest";
 import Movie, { MovieModel } from "../../models/movieModel";
 import { ErrorClass, MovieError, Errors } from "../../exception";
 import { ErrorMessage } from "../../errorMessages";
-import { ErrorType } from "../../constants";
+import { ErrorType, SuccessMessage } from "../../constants";
 
 const movieError = {
   MovieError: {
@@ -14,7 +14,7 @@ const movieError = {
 export class MovieCreationService {
   static async createMovie(
     movieRequestInput: MovieRequestInput
-  ): Promise<MovieModel> {
+  ): Promise<String> {
     try {
       const existingMovie = await Movie.findOne({
         title: movieRequestInput.title,
@@ -26,7 +26,8 @@ export class MovieCreationService {
       console.log("I got here");
 
       const newMovie: MovieModel = new Movie(movieRequestInput);
-      return await newMovie.save();
+      newMovie.save();
+      return SuccessMessage.MOVIE_ADDED_SUCESSFULLY;
     } catch (error) {
       if (error instanceof ErrorClass) {
         throw new ErrorClass(ErrorType.MovieError, movieError as Errors);

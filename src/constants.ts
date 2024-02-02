@@ -11,3 +11,7 @@ export enum ErrorType {
   LoginError = "LoginError",
   UserError = "UserError",
 }
+
+export enum SuccessMessage {
+  MOVIE_ADDED_SUCESSFULLY = "Movie added successfuly",
+}

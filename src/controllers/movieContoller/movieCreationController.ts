@@ -5,7 +5,7 @@ import { MovieError, ErrorClass } from "../../exception";
 import { HttpStatus } from "../../constants";
 import { MovieRequestInput } from "../../requestInput/movieRequest";
 import { MovieCreationService } from "../../service/movieService/movieCreationService";
-import { faSave } from "@fortawesome/free-regular-svg-icons";
+import { GenerateApiResponse } from "../../utils";
 
 export const createMoviecontroller = async (
   req: Request,
@@ -16,20 +16,31 @@ export const createMoviecontroller = async (
 
     console.log("I'm the movie request :", movieRequestInput);
 
-    const savedMovie = await MovieCreationService.createMovie(
-      movieRequestInput
-    );
+    const movieCreationSucessMessage: String =
+      await MovieCreationService.createMovie(movieRequestInput);
 
-    console.log("I'm the saved movie ", savedMovie);
-    res.status(HttpStatus.CREATED).json(savedMovie);
+    console.log("I'm saved movie sucess message ", movieCreationSucessMessage);
+    res
+      .status(HttpStatus.CREATED)
+      .json(
+        GenerateApiResponse.returnCreatedResponse(movieCreationSucessMessage)
+      );
   } catch (error) {
     if (error instanceof ErrorClass) {
-      res.status(HttpStatus.BAD_REQUEST).json({ error: error.message });
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .json(
+          GenerateApiResponse.returnBadRequestResponse<String>(error.message)
+        );
     } else {
       console.log("An error occurred: ", error);
       res
         .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .send(ErrorMessage.INTERNAL_SERVER_ERROR_MESSAGE);
+        .send(
+          GenerateApiResponse.returnInternalServerErrorResponse<String>(
+            ErrorMessage.INTERNAL_SERVER_ERROR_MESSAGE
+          )
+        );
     }
   }
 };
