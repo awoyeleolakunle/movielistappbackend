@@ -1,14 +1,12 @@
 import { MovieRequestInput } from "../../requestInput/movieRequest";
 import Movie, { MovieModel } from "../../models/movieModel";
-import { ErrorClass, MovieError, Errors } from "../../exception";
+import { ErrorClass, Errors } from "../../exception";
 import { ErrorMessage } from "../../errorMessages";
 import { ErrorType, SuccessMessage } from "../../constants";
 
 const movieError = {
-  MovieError: {
-    name: ErrorType.MovieError,
-    message: "Movie already exists",
-  },
+  name: ErrorType.MovieError,
+  message: "Movie already exists",
 };
 
 export class MovieCreationService {
@@ -20,7 +18,7 @@ export class MovieCreationService {
         title: movieRequestInput.title,
       });
       if (existingMovie) {
-        throw new ErrorClass(ErrorType.MovieError, movieError as Errors);
+        throw new ErrorClass(movieError as Errors);
       }
 
       console.log("I got here");
@@ -30,7 +28,7 @@ export class MovieCreationService {
       return SuccessMessage.MOVIE_ADDED_SUCESSFULLY;
     } catch (error) {
       if (error instanceof ErrorClass) {
-        throw new ErrorClass(ErrorType.MovieError, movieError as Errors);
+        throw new ErrorClass(movieError as Errors);
       } else {
         console.log("An error occurred: ", error);
         throw new Error(ErrorMessage.INTERNAL_SERVER_ERROR_MESSAGE);

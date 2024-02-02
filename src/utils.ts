@@ -9,21 +9,21 @@ export enum Http {
 }
 
 export class ApiResponse<T> {
-  public data: T;
-  public http: Http;
-  public status: number;
-  public isSuccessful: boolean;
-
-  constructor(data: T, http: Http, status: number, isSucessful: boolean) {
+  constructor(
+    public data: T,
+    public http: Http,
+    public status: number,
+    public isSuccessful: boolean
+  ) {
     this.data = data;
     this.http = http;
     this.status = status;
-    this.isSuccessful = isSucessful;
+    this.isSuccessful = isSuccessful;
   }
 }
 
 export class GenerateApiResponse {
-  static returnCreatedResponse<T>(data: T): ApiResponse<T> {
+  static returnCreatedResponse<T extends String>(data: T): ApiResponse<T> {
     return new ApiResponse(data, Http.CREATED, HttpStatus.CREATED, true);
   }
 

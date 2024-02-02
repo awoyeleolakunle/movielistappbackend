@@ -8,10 +8,8 @@ import { ErrorMessage } from "../../errorMessages";
 import { generateToken } from "../../api/utils/jwt.utils";
 
 const loginError = {
-  LoginError: {
-    name: ErrorType.LoginError,
-    message: ErrorMessage.INVALID_USER_DETAILS,
-  },
+  name: ErrorType.LoginError,
+  message: ErrorMessage.INVALID_USER_DETAILS,
 };
 
 export class LoginService {
@@ -22,7 +20,7 @@ export class LoginService {
       );
 
       if (!foundUser) {
-        throw new ErrorClass(ErrorType.LoginError, loginError as Errors);
+        throw new ErrorClass(loginError as Errors);
       }
 
       const isTheSamePassword = await bcrypt.compare(
@@ -30,13 +28,13 @@ export class LoginService {
         foundUser.password
       );
       if (!isTheSamePassword) {
-        throw new ErrorClass(ErrorType.LoginError, loginError as Errors);
+        throw new ErrorClass(loginError as Errors);
       }
       const generatedToken = generateToken(foundUser);
       return generatedToken;
     } catch (error) {
       if (error instanceof ErrorClass) {
-        throw new ErrorClass(ErrorType.LoginError, loginError as Errors);
+        throw new ErrorClass(loginError as Errors);
       } else {
         console.error("Error finding movie by name:", error);
         throw new Error(ErrorMessage.INTERNAL_SERVER_ERROR_MESSAGE);

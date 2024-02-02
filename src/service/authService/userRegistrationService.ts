@@ -7,10 +7,8 @@ import * as bcrypt from "bcrypt";
 import { generateToken } from "../../api/utils/jwt.utils";
 
 const registrationError = {
-  RegistrationError: {
-    name: ErrorType.RegistrationError,
-    message: ErrorMessage.USER_ALREADY_EXISTS,
-  },
+  name: ErrorType.RegistrationError,
+  message: ErrorMessage.USER_ALREADY_EXISTS,
 };
 
 export class UserRegistrationService {
@@ -22,10 +20,7 @@ export class UserRegistrationService {
         emailAddress: userRegistrationRequest.emailAddress,
       });
       if (existingUser) {
-        throw new ErrorClass(
-          ErrorType.RegistrationError,
-          registrationError as Errors
-        );
+        throw new ErrorClass(registrationError as Errors);
       }
 
       const harshedPassword = await bcrypt.hash(
@@ -42,10 +37,7 @@ export class UserRegistrationService {
       return generateToken(savedUser);
     } catch (error) {
       if (error instanceof ErrorClass) {
-        throw new ErrorClass(
-          ErrorType.RegistrationError,
-          registrationError as Errors
-        );
+        throw new ErrorClass(registrationError as Errors);
       } else {
         console.log("An error occurred: ", error);
         throw new Error(ErrorMessage.INTERNAL_SERVER_ERROR_MESSAGE);

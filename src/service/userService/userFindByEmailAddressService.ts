@@ -4,10 +4,8 @@ import { ErrorType } from "../../constants";
 import { ErrorMessage } from "../../errorMessages";
 
 export const userError = {
-  UserError: {
-    name: ErrorType.UserError,
-    message: ErrorMessage.USER_NOT_FOUND,
-  },
+  name: ErrorType.UserError,
+  message: ErrorMessage.USER_NOT_FOUND,
 };
 export class UserFinderByEmailAddress {
   static async findUserByEmailAddress(
@@ -19,12 +17,12 @@ export class UserFinderByEmailAddress {
       });
 
       if (!foundUser) {
-        throw new ErrorClass(ErrorType.UserError, userError as Errors);
+        throw new ErrorClass(userError as Errors);
       }
       return foundUser;
     } catch (error) {
       if (error instanceof ErrorClass) {
-        throw new ErrorClass(ErrorType.UserError, userError as Errors);
+        throw new ErrorClass(userError as Errors);
       } else {
         console.error("Error finding movie by name:", error);
         throw new Error(ErrorMessage.INTERNAL_SERVER_ERROR_MESSAGE);

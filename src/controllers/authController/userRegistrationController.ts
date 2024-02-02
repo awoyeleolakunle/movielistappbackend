@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import User, { UserModel } from "../../models/userModel";
 import { ErrorMessage } from "../../errorMessages";
-import { ErrorClass, RegistrationError } from "../../exception";
+import { ErrorClass } from "../../exception";
 import { HttpStatus } from "../../constants";
 
 import { UserRegistrationRequest } from "../../requestInput/userRequest";

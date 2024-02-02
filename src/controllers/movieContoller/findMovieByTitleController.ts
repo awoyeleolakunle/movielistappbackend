@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import Movie, { MovieModel } from "../../models/movieModel";
-import { MovieError, ErrorClass } from "../../exception";
+import { ErrorClass } from "../../exception";
 import { ErrorMessage } from "../../errorMessages";
 import { HttpStatus } from "../../constants";
 import { MovieFinderByTitleService } from "../../service/movieService/movieFinderByTitleService";
