@@ -19,7 +19,10 @@ export const createMoviecontroller = async (
     const movieCreationSucessMessage: String =
       await MovieCreationService.createMovie(movieRequestInput);
 
-    console.log("I'm saved movie sucess message ", movieCreationSucessMessage);
+    console.log(
+      "I'm the saved movie success message ",
+      movieCreationSucessMessage
+    );
     res
       .status(HttpStatus.CREATED)
       .json(
