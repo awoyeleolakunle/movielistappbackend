@@ -4,6 +4,7 @@ import { ErrorType } from "../../constants";
 import { ErrorClass, Errors } from "../../exception";
 import { ErrorMessage } from "../../errorMessages";
 import * as bcrypt from "bcrypt";
+import { generateToken } from "../../api/utils/jwt.utils";
 
 const registrationError = {
   RegistrationError: {
@@ -15,7 +16,7 @@ const registrationError = {
 export class UserRegistrationService {
   static async createUser(
     userRegistrationRequest: UserRegistrationRequest
-  ): Promise<UserModel> {
+  ): Promise<String> {
     try {
       const existingUser: UserModel | null = await User.findOne({
         emailAddress: userRegistrationRequest.emailAddress,
@@ -37,7 +38,8 @@ export class UserRegistrationService {
       newUser.dateCreated = new Date();
       newUser.accessType = ["USER"];
 
-      return await newUser.save();
+      const savedUser: UserModel = await newUser.save();
+      return generateToken(savedUser);
     } catch (error) {
       if (error instanceof ErrorClass) {
         throw new ErrorClass(
