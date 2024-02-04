@@ -25,7 +25,6 @@ export function generateToken(user: UserModel) {
     algorithm: "HS256",
     expiresIn: "1h",
   };
-
   return sign(payload, privateKey, signInOptions);
 }
 
@@ -53,8 +52,6 @@ export function validateToken(token: string): Promise<any> {
     complete: true,
   };
 
-  console.log("I got here before returning ");
-
   return new Promise((resolve, reject) => {
     verify(
       token,
@@ -71,7 +68,6 @@ export function validateToken(token: string): Promise<any> {
           return reject(new Error("Token verification failed"));
         }
 
-        console.log("I'm in the function here", decoded);
         resolve(decoded as TokenPayload);
       }
     );

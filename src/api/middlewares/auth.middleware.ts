@@ -15,45 +15,19 @@ export const authorize =
 
       if (jwt.toLowerCase().startsWith("bearer")) {
         jwt = jwt.slice("bearer".length).trim();
-        console.log("I'm the token after bearer has been trimed ", jwt);
       }
 
       const decodedToken = await validateToken(jwt);
 
-      console.log("I'm the decoded token ", decodedToken);
-
-      // const hasAccessToEndpoint = allowedAccessTypes.some((at) =>
-      //   decodedToken.accessTypes.some((uat) => uat.includes(at))
-      // );
-
       allowedAccessTypes.some((at) => console.log(at));
-      // const hasAccessToEndpoint = allowedAccessTypes.some((at) => {
-      //   console.log("Required Access Type:", at);
-      //   console.log("User Access Types:", decodedToken.accessTypes);
-
-      //   const hasAccess = decodedToken.accessTypes.includes(at);
-      //   console.log("Has Access:", hasAccess);
-
-      //   return hasAccess;
-      // });
 
       console.log(typeof decodedToken);
 
-      const accessTypes: string[] = decodedToken.payload.accessTypes;
-
-      console.log("I'm the access type ", accessTypes);
-
       const hasAccessToEndpoint = allowedAccessTypes.some((at) => {
-        console.log("Required Access Type:", at);
-        console.log("User Access Types:", decodedToken.payload.accessTypes);
-
         const hasAccess = decodedToken.payload.accessTypes.includes(at);
-        console.log("Has Access:", hasAccess);
 
         return hasAccess;
       });
-
-      console.log("Has Access to Endpoint:", hasAccessToEndpoint);
 
       if (!hasAccessToEndpoint) {
         return res
