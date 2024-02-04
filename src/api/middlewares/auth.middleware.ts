@@ -39,15 +39,15 @@ export const authorize =
 
       console.log(typeof decodedToken);
 
-      const accessTypes = decodedToken.accessTypes;
+      const accessTypes: string[] = decodedToken.payload.accessTypes;
 
       console.log("I'm the access type ", accessTypes);
 
       const hasAccessToEndpoint = allowedAccessTypes.some((at) => {
         console.log("Required Access Type:", at);
-        console.log("User Access Types:", decodedToken.accessTypes);
+        console.log("User Access Types:", decodedToken.payload.accessTypes);
 
-        const hasAccess = decodedToken.accessTypes.includes(at);
+        const hasAccess = decodedToken.payload.accessTypes.includes(at);
         console.log("Has Access:", hasAccess);
 
         return hasAccess;

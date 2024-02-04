@@ -7,9 +7,13 @@ import * as Auth from "../api/middlewares/auth.middleware";
 
 const router = Router();
 
-router.post("/movieCreation", createMoviecontroller);
+//router.post("/movieCreation", createMoviecontroller);
 
 //post("/movieCreation", createMovie);
+
+router
+  .route("/movieCreation")
+  .post(Auth.authorize(["ADMIN"]), createMoviecontroller);
 
 router.get("/findMovie", findMovieByIdContorller);
 router.get("/allMovie", findAllMoviesController);

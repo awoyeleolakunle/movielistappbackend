@@ -36,7 +36,7 @@ interface TokenPayload {
   userId: number;
 }
 
-export function validateToken(token: string): Promise<TokenPayload> {
+export function validateToken(token: string): Promise<any> {
   console.log("I entered here to validate ");
   const publicKey = fs.readFileSync(
     path.join(__dirname, "./../../../public.key")
@@ -60,7 +60,7 @@ export function validateToken(token: string): Promise<TokenPayload> {
       token,
       privateKey as Secret,
       verifyOptions,
-      (error, decoded: TokenPayload | JwtPayload | undefined) => {
+      (error, decoded: Object | TokenPayload | JwtPayload | undefined) => {
         if (error) {
           console.error("Error during token verification:", error);
           return reject(error);
@@ -76,22 +76,4 @@ export function validateToken(token: string): Promise<TokenPayload> {
       }
     );
   });
-
-  // return new Promise((resolve, reject) => {
-  //   verify(
-  //     token,
-  //     publicKey,
-  //     verifyOptions,
-  //     (error, decoded: Object | TokenPayload | undefined) => {
-  //       if (error) return reject(error);
-  //       if (!decoded) {
-  //         console.error("Decoded token is undefined");
-  //         return reject(new Error("Token verification failed"));
-  //       }
-
-  //       console.log("I'm the returned decoded ", decoded);
-  //       resolve(decoded as TokenPayload);
-  //     }
-  //   );
-  // });
 }
