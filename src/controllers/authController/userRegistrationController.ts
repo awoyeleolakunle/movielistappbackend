@@ -14,7 +14,7 @@ export const registerUserController = async (
 ): Promise<void> => {
   try {
     const userRegistrationRequest: UserRegistrationRequest = req.body;
-
+    console.log("I got here");
     const tokenAttachedToNewlyRegisteredUser: String =
       await UserRegistrationService.createUser(userRegistrationRequest);
 
@@ -27,6 +27,7 @@ export const registerUserController = async (
       );
   } catch (error) {
     if (error instanceof ErrorClass) {
+      console.log("AN ERROR WAS THROWN ");
       res
         .status(HttpStatus.BAD_REQUEST)
         .json(

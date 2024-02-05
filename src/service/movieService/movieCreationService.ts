@@ -24,7 +24,7 @@ export class MovieCreationService {
       console.log("I got here");
 
       const newMovie: MovieModel = new Movie(movieRequestInput);
-      newMovie.save();
+      await newMovie.save();
       return SuccessMessage.MOVIE_ADDED_SUCESSFULLY;
     } catch (error) {
       if (error instanceof ErrorClass) {

@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import movieRouter from "./routes/movieRoutes";
 import userRouter from "./routes/userRouter";
 import loginRouter from "./routes/loginRouter";
+import adminRouter from "./routes/adminRouter";
 
 import connectToDatabase from "../src/db/db";
 
@@ -29,6 +30,7 @@ connectToDatabase();
 app.use("/api/v1/movielistapp/", movieRouter);
 app.use("/api/v1/movielistapp/", userRouter);
 app.use("/api/v1/movielistapp/", loginRouter);
+app.use("/api/v1/movielistapp/", adminRouter);
 
 app.use("/api/v1/movielistapp", PAGE_NOT_FOUND);
 

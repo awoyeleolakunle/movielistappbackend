@@ -24,7 +24,7 @@ export class UserFinderByEmailAddress {
       if (error instanceof ErrorClass) {
         throw new ErrorClass(userError as Errors);
       } else {
-        console.error("Error finding movie by name:", error);
+        console.error("Error finding user by name:", error);
         throw new Error(ErrorMessage.INTERNAL_SERVER_ERROR_MESSAGE);
       }
     }

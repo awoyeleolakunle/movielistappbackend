@@ -3,6 +3,7 @@ export const HttpStatus = {
   CREATED: 201,
   INTERNAL_SERVER_ERROR: 500,
   OK: 200,
+  UNAUTHORIZED_ACCESS: 401,
 };
 
 export enum ErrorType {

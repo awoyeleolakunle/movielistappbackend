@@ -6,6 +6,7 @@ export enum Http {
   OK = "OK",
   BAD_REQUEST = "BAD_REQUEST",
   INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
+  UNAUTHORIZED_ACCESS = "UNAUTHORIZED_ACCESS",
 }
 
 export class ApiResponse<T> {
@@ -45,6 +46,16 @@ export class GenerateApiResponse {
       data,
       Http.INTERNAL_SERVER_ERROR,
       HttpStatus.INTERNAL_SERVER_ERROR,
+      false
+    );
+  }
+  static returnUnauthoriseAccessResponse<T extends string>(
+    data: T
+  ): ApiResponse<T> {
+    return new ApiResponse(
+      data,
+      Http.UNAUTHORIZED_ACCESS,
+      HttpStatus.UNAUTHORIZED_ACCESS,
       false
     );
   }

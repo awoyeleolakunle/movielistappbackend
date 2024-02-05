@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { validateToken } from "./../utils/jwt.utils";
+import { GenerateApiResponse } from "./../../utils";
+import { ErrorMessage } from "./../../errorMessages";
 
 export const authorize =
   (allowedAccessTypes: string[]) =>
@@ -30,9 +32,11 @@ export const authorize =
       });
 
       if (!hasAccessToEndpoint) {
-        return res
-          .status(401)
-          .json({ message: "No enough privileges to access endpoint" });
+        return res.status(401).json({
+          error: GenerateApiResponse.returnUnauthoriseAccessResponse(
+            ErrorMessage.UNAUTHORIZED_ACCESS
+          ),
+        });
       }
 
       next();
