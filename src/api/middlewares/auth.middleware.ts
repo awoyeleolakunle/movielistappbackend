@@ -6,8 +6,6 @@ import { ErrorMessage } from "./../../errorMessages";
 export const authorize =
   (allowedAccessTypes: string[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
-    console.log(allowedAccessTypes);
-    console.log(req.headers.authorization);
     try {
       let jwt = req.headers.authorization;
 
@@ -20,10 +18,6 @@ export const authorize =
       }
 
       const decodedToken = await validateToken(jwt);
-
-      allowedAccessTypes.some((at) => console.log(at));
-
-      console.log(typeof decodedToken);
 
       const hasAccessToEndpoint = allowedAccessTypes.some((at) => {
         const hasAccess = decodedToken.payload.accessTypes.includes(at);
